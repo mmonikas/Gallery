@@ -3,6 +3,7 @@ package com.example.monika.gallery;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,7 +41,7 @@ public class SlidingImage_Adapter extends PagerAdapter {
         View imageLayout = inflater.inflate(R.layout.image_details, view, false);
 
         assert imageLayout != null;
-        final ImageView imageView = (ImageView) imageLayout
+        final ImageView imageView = imageLayout
                 .findViewById(R.id.imageView_details);
 
 
@@ -66,6 +67,5 @@ public class SlidingImage_Adapter extends PagerAdapter {
     public Parcelable saveState() {
         return null;
     }
-
 
 }

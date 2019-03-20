@@ -14,7 +14,7 @@ public class ImageAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        return images.length;
     }
 
     public Object getItem(int position) {
@@ -25,8 +25,6 @@ public class ImageAdapter extends BaseAdapter {
         return 0;
     }
 
-
-    // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
         if (convertView == null) {
@@ -40,12 +38,12 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(mThumbIds[position]);
+        imageView.setImageResource(images[position]);
         return imageView;
     }
 
-    // references to our images
-    private Integer[] mThumbIds = {
+//    // references to images
+    private Integer[] images = {
             R.drawable.img1, R.drawable.img2, R.drawable.img3,
             R.drawable.img4, R.drawable.img5, R.drawable.img6,
             R.drawable.img7, R.drawable.img8, R.drawable.img9,

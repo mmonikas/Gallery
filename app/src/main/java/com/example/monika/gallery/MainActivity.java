@@ -17,7 +17,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-
     @BindView(R.id.gridView) GridView gridView;
 
     @Override
@@ -78,10 +77,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-//        getWindow().requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-//        getWindow().setEnterTransition(new Explode());
     }
-
-
 }
