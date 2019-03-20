@@ -7,14 +7,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 public class ImageAdapter extends BaseAdapter {
-    private Context mContext;
 
-    public ImageAdapter(Context c) {
+    private Context mContext;
+    private Integer[] mImages;
+
+    public ImageAdapter(Context c, Integer[] images) {
         mContext = c;
+        mImages = images;
     }
 
     public int getCount() {
-        return images.length;
+        return mImages.length;
     }
 
     public Object getItem(int position) {
@@ -38,15 +41,7 @@ public class ImageAdapter extends BaseAdapter {
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(images[position]);
+        imageView.setImageResource(mImages[position]);
         return imageView;
     }
-
-//    // references to images
-    private Integer[] images = {
-            R.drawable.img1, R.drawable.img2, R.drawable.img3,
-            R.drawable.img4, R.drawable.img5, R.drawable.img6,
-            R.drawable.img7, R.drawable.img8, R.drawable.img9,
-            R.drawable.img10, R.drawable.img11, R.drawable.img12
-    };
 }

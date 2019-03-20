@@ -40,13 +40,6 @@ public class DetailsActivity extends FragmentActivity {
      */
     private SlidingImage_Adapter mPagerAdapter;
 
-    public Integer[] mResources = {
-            R.drawable.img1, R.drawable.img2, R.drawable.img3,
-            R.drawable.img4, R.drawable.img5, R.drawable.img6,
-            R.drawable.img7, R.drawable.img8, R.drawable.img9,
-            R.drawable.img10, R.drawable.img11, R.drawable.img12
-    };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +49,8 @@ public class DetailsActivity extends FragmentActivity {
 
         int imgPosition = getIntent().getExtras().getInt("imgId");
 
-        mPagerAdapter = new SlidingImage_Adapter(DetailsActivity.this, mResources);
+        mPagerAdapter = new SlidingImage_Adapter(DetailsActivity.this,
+                ImagesSource.getInstance().images);
         mPager.setAdapter(mPagerAdapter);
         mPager.setCurrentItem(imgPosition);
         mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

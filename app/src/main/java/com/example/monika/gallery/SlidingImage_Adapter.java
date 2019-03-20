@@ -12,7 +12,6 @@ import android.widget.ImageView;
 
 public class SlidingImage_Adapter extends PagerAdapter {
 
-
     private Integer[] IMAGES;
     private LayoutInflater inflater;
     private Context context;
