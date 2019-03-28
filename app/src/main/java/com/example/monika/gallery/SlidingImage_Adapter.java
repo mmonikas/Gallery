@@ -12,15 +12,15 @@ import android.widget.ImageView;
 
 public class SlidingImage_Adapter extends PagerAdapter {
 
-    private Integer[] IMAGES;
+    private Integer[] images;
     private LayoutInflater inflater;
     private Context context;
-    long animationDuration = 1000; // miliseconds
+    long animationDuration = 1500; // miliseconds
 
 
-    public SlidingImage_Adapter(Context context, Integer[] IMAGES) {
+    public SlidingImage_Adapter(Context context, Integer[] images) {
+        this.images = images;
         this.context = context;
-        this.IMAGES=IMAGES;
         inflater = LayoutInflater.from(context);
 
     }
@@ -32,7 +32,7 @@ public class SlidingImage_Adapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return IMAGES.length;
+        return images.length;
     }
 
     @Override
@@ -43,9 +43,8 @@ public class SlidingImage_Adapter extends PagerAdapter {
         final ImageView imageView = imageLayout
                 .findViewById(R.id.imageView_details);
 
-
-        imageView.setImageResource(IMAGES[position]);
-        ObjectAnimator alphaAnimation = ObjectAnimator.ofFloat(imageView, View.ALPHA, 0.0f, 1.0f);
+        imageView.setImageResource(images[position]);
+        ObjectAnimator alphaAnimation = ObjectAnimator.ofFloat(imageView, View.ALPHA, 0.0f, 2.0f);
         alphaAnimation.setDuration(animationDuration);
         alphaAnimation.start();
         view.addView(imageLayout, 0);
@@ -65,6 +64,10 @@ public class SlidingImage_Adapter extends PagerAdapter {
     @Override
     public Parcelable saveState() {
         return null;
+    }
+
+    public void refresh() {
+        notifyDataSetChanged();
     }
 
 }

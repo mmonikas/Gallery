@@ -1,38 +1,22 @@
 package com.example.monika.gallery;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.app.Activity;
-import android.content.Context;
-import android.os.Binder;
-import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class DetailsActivity extends FragmentActivity {
 
-    private static final int NUM_PAGES = 12;
-
     /**
      * The pager widget, which handles animation and allows swiping horizontally to access previous
      * and next wizard steps.
      */
+
     @BindView(R.id.pager) ViewPager mPager;
 
     /**
@@ -49,14 +33,24 @@ public class DetailsActivity extends FragmentActivity {
 
         int imgPosition = getIntent().getExtras().getInt("imgId");
 
-        mPagerAdapter = new SlidingImage_Adapter(DetailsActivity.this,
-                ImagesSource.getInstance().images);
+        mPagerAdapter = new SlidingImage_Adapter(DetailsActivity.this, ImagesSource.getInstance().images);
         mPager.setAdapter(mPagerAdapter);
         mPager.setCurrentItem(imgPosition);
-        mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            float sumPositionAndPositionOffset;
+            boolean leftToRight;
+
             @Override
             public void onPageScrolled(int i, float v, int i1) {
+                if(i + v > sumPositionAndPositionOffset)
+                    //swipe from right to left
+                    leftToRight = false;
+                else
+                    leftToRight = true;
+                        //swipe from left to right
 
+                sumPositionAndPositionOffset = i + v;
             }
 
             @Override
@@ -66,12 +60,23 @@ public class DetailsActivity extends FragmentActivity {
 
             @Override
             public void onPageScrollStateChanged(int i) {
-                if (i == ViewPager.SCROLL_STATE_IDLE) {
+                if (i == ViewPager.SCROLL_STATE_DRAGGING) {
                     int index = mPager.getCurrentItem();
-                    if (index == 0)
-                        mPager.setCurrentItem(mPagerAdapter.getCount() - 1, false);
-                    else if (index == mPagerAdapter.getCount() - 1)
-                        mPager.setCurrentItem(0, false);
+                    if(leftToRight) {
+                        if (index == mPagerAdapter.getCount() - 1) {
+                            mPager.setCurrentItem(0, false);
+
+                        }
+                        else if (index == 0) {
+                            mPager.setCurrentItem(mPagerAdapter.getCount() - 1, false);
+                        }
+                    }
+//                    else {
+//                        if (index == 0) {
+//                            mPager.setCurrentItem(mPagerAdapter.getCount() - 1, false);
+//
+//                        }
+//                    }
                 }
             }
         });

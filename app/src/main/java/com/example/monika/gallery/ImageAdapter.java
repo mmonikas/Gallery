@@ -1,6 +1,8 @@
 package com.example.monika.gallery;
 
 import android.content.Context;
+import android.media.Image;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;

@@ -1,7 +1,9 @@
 package com.example.monika.gallery;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Handler;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.transition.Explode;
@@ -16,6 +18,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+
+    public static Integer[] imagesSource = new Integer[]{
+        R.drawable.img1, R.drawable.img2, R.drawable.img3,
+                R.drawable.img4, R.drawable.img5, R.drawable.img6,
+                R.drawable.img7, R.drawable.img8, R.drawable.img9,
+                R.drawable.img10, R.drawable.img11, R.drawable.img12};
 
     @BindView(R.id.gridView) GridView gridView;
 
