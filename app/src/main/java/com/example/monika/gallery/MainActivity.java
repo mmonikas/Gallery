@@ -19,12 +19,6 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static Integer[] imagesSource = new Integer[]{
-        R.drawable.img1, R.drawable.img2, R.drawable.img3,
-                R.drawable.img4, R.drawable.img5, R.drawable.img6,
-                R.drawable.img7, R.drawable.img8, R.drawable.img9,
-                R.drawable.img10, R.drawable.img11, R.drawable.img12};
-
     @BindView(R.id.gridView) GridView gridView;
 
     @Override
@@ -34,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        gridView.setAdapter(new ImageAdapter(this, ImagesSource.getInstance().images));
+        ImageAdapter imageAdapter = new ImageAdapter(this, ImagesSource.getInstance().images);
+        gridView.setAdapter(imageAdapter);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
